@@ -1,0 +1,38 @@
+import {
+    RiCompass3Line,
+    RiHashtag,
+    RiFoldersLine,
+    RiSettingsLine,
+    RiDashboardLine,
+    RiToolsLine,
+    RiBarChartLine,
+    RiBookLine,
+    RiWalletLine,
+    RiNotificationLine,
+    RiEarthLine,
+    RiEye2Line,
+    RiEditLine,
+    RiDeleteBinLine,
+    RiFileCopyLine,
+    RiArchiveLine,
+} from "react-icons/ri";
+import { IconType } from "react-icons";
+
+export const icons: Record<string, IconType> = {
+    "ri-compass-3-line": RiCompass3Line,
+    "ri-hashtag": RiHashtag,
+    "ri-folders-line": RiFoldersLine,
+    "ri-settings-line": RiSettingsLine,
+    "ri-dashboard-line": RiDashboardLine,
+    "ri-tools-line": RiToolsLine,
+    "ri-bar-chart-line": RiBarChartLine,
+    "ri-book-line": RiBookLine,
+    "ri-wallet-line": RiWalletLine,
+    "ri-notification-line": RiNotificationLine,
+    "ri-earth-line": RiEarthLine,
+    "ri-eye-2-line": RiEye2Line,
+    "ri-edit-line": RiEditLine,
+    "ri-delete-bin-line": RiDeleteBinLine,
+    "ri-file-copy-line": RiFileCopyLine,
+    "ri-archive-line": RiArchiveLine,
+};
