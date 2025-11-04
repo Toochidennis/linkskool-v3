@@ -1,10 +1,26 @@
 
 import { useState } from 'react';
- import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '#/components/modules/learn/Button';
- import EnrollmentFlow from '#/layouts/learn/dashboard/components/EnrollmentFlow';
- import LearningInterface from '#/components/modules/learn/LearningInterface';
-
+import EnrollmentFlow from '#/layouts/learn/dashboard/components/EnrollmentFlow';
+import LearningInterface from '#/components/modules/learn/LearningInterface';
+import {
+  RiBookLine,
+  RiCalendarLine,
+  RiCheckLine,
+  RiCloseLine,
+  RiPlayCircleLine,
+  RiSearchLine,
+  RiStarFill,
+  RiStarHalfFill,
+  RiStarLine,
+  RiStopCircleLine,
+  RiTimeLine,
+  RiUserAddLine,
+  RiUserLine,
+  RiArrowLeftLine,
+  RiEyeLine
+} from 'react-icons/ri';
 
 // Mock data for available cohorts from different instructors
 const mockCohorts = [
@@ -238,10 +254,10 @@ const Dashboard: React.FC = () => {
       <i
         key={i}
         className={`${i < Math.floor(rating)
-            ? 'ri-star-fill text-yellow-400'
-            : i < rating
-              ? 'ri-star-half-fill text-yellow-400'
-              : 'ri-star-line text-gray-300'
+          ? <RiStarFill className="text-yellow-400" />
+          : i < rating
+            ? <RiStarHalfFill className="text-yellow-400" />
+            : <RiStarLine className="text-gray-300" />
           } text-xs`}
       />
     ));
@@ -288,7 +304,7 @@ const Dashboard: React.FC = () => {
                 onClick={() => setSelectedCohort(null)}
                 className="p-3 hover:bg-white/60 rounded-xl transition-all duration-300 group"
               >
-                <i className="ri-arrow-left-line text-gray-600 group-hover:text-gray-900 text-lg"></i>
+                <RiArrowLeftLine className="text-gray-600 group-hover:text-gray-900 text-lg" />
               </button>
               <div>
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
@@ -323,7 +339,7 @@ const Dashboard: React.FC = () => {
                         </span>
                         {selectedCohort.isEnrolled && (
                           <span className="px-3 py-1 bg-green-500 text-white rounded-full text-sm font-semibold flex items-center">
-                            <i className="ri-check-line mr-1"></i>
+                            <RiCheckLine className="mr-1" />
                             Enrolled
                           </span>
                         )}
@@ -362,7 +378,7 @@ const Dashboard: React.FC = () => {
                         {selectedCohort.learningOutcomes.map((outcome: string, index: number) => (
                           <div key={index} className="flex items-start space-x-3 p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-100">
                             <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                              <i className="ri-check-line text-white text-sm"></i>
+                              <RiCheckLine className='text-white text-sm' />
                             </div>
                             <span className="text-gray-800 font-medium">{outcome}</span>
                           </div>
@@ -374,17 +390,17 @@ const Dashboard: React.FC = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl border border-purple-100">
                         <h4 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
-                          <i className="ri-calendar-line mr-2 text-purple-600"></i>
+                          <RiCalendarLine className="mr-2 text-purple-600" />
                           Schedule
                         </h4>
                         <p className="text-gray-700 font-medium mb-2">{selectedCohort.schedule}</p>
                         <div className="text-sm text-gray-600">
                           <div className="flex items-center mb-1">
-                            <i className="ri-play-circle-line mr-2"></i>
+                            <RiPlayCircleLine className="mr-2" />
                             Start: {new Date(selectedCohort.startDate).toLocaleDateString()}
                           </div>
                           <div className="flex items-center">
-                            <i className="ri-stop-circle-line mr-2"></i>
+                            <RiStopCircleLine className="mr-2" />
                             End: {new Date(selectedCohort.endDate).toLocaleDateString()}
                           </div>
                         </div>
@@ -392,7 +408,7 @@ const Dashboard: React.FC = () => {
 
                       <div className="p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl border border-green-100">
                         <h4 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
-                          <i className="ri-book-line mr-2 text-green-600"></i>
+                          <RiBookLine className="mr-2 text-green-600" />
                           Prerequisites
                         </h4>
                         <p className="text-gray-700 font-medium">{selectedCohort.prerequisites}</p>
@@ -445,18 +461,18 @@ const Dashboard: React.FC = () => {
                         onClick={() => selectedCohort.isEnrolled ? handleContinueLearning(selectedCohort.id) : handleEnroll(selectedCohort)}
                         variant="primary"
                         className={`w-full py-4 text-lg font-semibold ${selectedCohort.isEnrolled
-                            ? 'bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800'
-                            : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800'
+                          ? 'bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800'
+                          : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800'
                           }`}
                       >
                         {selectedCohort.isEnrolled ? (
                           <>
-                            <i className="ri-play-circle-line mr-2"></i>
+                            <RiPlayCircleLine className="mr-2" />
                             Continue Learning
                           </>
                         ) : (
                           <>
-                            <i className="ri-user-add-line mr-2"></i>
+                            <RiUserAddLine className="mr-2" />
                             Enroll Now - ${selectedCohort.price}
                           </>
                         )}
@@ -475,21 +491,21 @@ const Dashboard: React.FC = () => {
                       <div className="space-y-3">
                         <div className="flex items-center justify-between">
                           <span className="text-gray-600 flex items-center">
-                            <i className="ri-star-line mr-2 text-yellow-500"></i>
+                            <RiStarLine className="mr-2 text-yellow-500" />
                             Rating
                           </span>
                           <span className="font-semibold text-gray-900">{selectedCohort.rating}/5.0</span>
                         </div>
                         <div className="flex items-center justify-between">
                           <span className="text-gray-600 flex items-center">
-                            <i className="ri-user-line mr-2 text-blue-500"></i>
+                            <RiUserLine className="mr-2 text-blue-500" />
                             Reviews
                           </span>
                           <span className="font-semibold text-gray-900">{selectedCohort.reviewCount}</span>
                         </div>
                         <div className="flex items-center justify-between">
                           <span className="text-gray-600 flex items-center">
-                            <i className="ri-time-line mr-2 text-green-500"></i>
+                            <RiTimeLine className="mr-2 text-green-500" />
                             Duration
                           </span>
                           <span className="font-semibold text-gray-900">
@@ -532,7 +548,7 @@ const Dashboard: React.FC = () => {
                   placeholder="Search cohorts or instructors..."
                   className="w-full px-3 py-2 pl-8 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-xs"
                 />
-                <i className="ri-search-line absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs"></i>
+                <RiSearchLine className="absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs" />
               </div>
             </div>
 
@@ -587,7 +603,7 @@ const Dashboard: React.FC = () => {
                   <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full text-xs font-medium flex items-center">
                     "{searchTerm}"
                     <button onClick={() => setSearchTerm('')} className="ml-1.5 hover:text-blue-900">
-                      <i className="ri-close-line text-xs"></i>
+                      <RiCloseLine className="text-xs" />
                     </button>
                   </span>
                 )}
@@ -595,7 +611,7 @@ const Dashboard: React.FC = () => {
                   <span className="px-2 py-0.5 bg-purple-100 text-purple-700 rounded-full text-xs font-medium flex items-center">
                     {selectedCategory}
                     <button onClick={() => setSelectedCategory('All')} className="ml-1.5 hover:text-purple-900">
-                      <i className="ri-close-line text-xs"></i>
+                      <RiCloseLine className="text-xs" />
                     </button>
                   </span>
                 )}
@@ -603,7 +619,7 @@ const Dashboard: React.FC = () => {
                   <span className="px-2 py-0.5 bg-green-100 text-green-700 rounded-full text-xs font-medium flex items-center">
                     {selectedPriceRange.label}
                     <button onClick={() => setSelectedPriceRange(priceRanges[0])} className="ml-1.5 hover:text-green-900">
-                      <i className="ri-close-line text-xs"></i>
+                      <RiCloseLine className="text-xs" />
                     </button>
                   </span>
                 )}
@@ -643,7 +659,7 @@ const Dashboard: React.FC = () => {
                 {cohort.isEnrolled && (
                   <div className="absolute top-2 right-2">
                     <span className="px-2 py-0.5 bg-green-500 text-white rounded-full text-[10px] font-semibold flex items-center">
-                      <i className="ri-check-line mr-1 text-xs"></i>
+                      <RiCheckLine className="text-xs mr-1" />
                       Enrolled
                     </span>
                   </div>
@@ -688,7 +704,7 @@ const Dashboard: React.FC = () => {
                 {/* Course Details */}
                 <div className="space-y-1.5 text-xs text-gray-600 mb-3">
                   <div className="flex items-center">
-                    <i className="ri-calendar-line mr-1.5 text-gray-400 text-xs"></i>
+                    <RiCalendarLine className="mr-1.5 text-gray-400 text-xs" />
                     <span className="text-[10px]">{new Date(cohort.startDate).toLocaleDateString()} - {new Date(cohort.endDate).toLocaleDateString()}</span>
                   </div>
                 </div>
@@ -696,29 +712,30 @@ const Dashboard: React.FC = () => {
                 {/* Action Buttons */}
                 <div className="flex items-center space-x-2">
                   <Button
-                    onClick={() => {/* handleViewDetails(cohort) */}}
+                    onClick={() => { handleViewDetails(cohort) }}
                     variant="ghost"
                     className="flex-1 border-2 border-gray-200 hover:border-blue-300 hover:bg-blue-50 text-gray-700 hover:text-blue-700 text-xs py-1.5"
                   >
-                    <i className="ri-eye-line mr-1 text-xs"></i>
+                    <RiEyeLine className="mr-1 text-xs" />
                     View
                   </Button>
                   <Button
-                    // onClick={() => cohort.isEnrolled ? handleContinueLearning(cohort) : handleEnroll(cohort)}
+                    onClick={() => cohort.isEnrolled ? handleContinueLearning(cohort) : handleEnroll(cohort)}
                     variant="primary"
                     className={`flex-1 text-xs py-1.5 ${cohort.isEnrolled
-                        ? 'bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800'
-                        : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800'
+                      ? 'bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800'
+                      : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800'
                       }`}
                   >
                     {cohort.isEnrolled ? (
                       <>
-                        <i className="ri-play-circle-line mr-1 text-xs"></i>
+                        <RiPlayCircleLine className="mr-1 text-xs" />
                         Continue
                       </>
                     ) : (
                       <>
-                        <i className="ri-user-add-line mr-1 text-xs"></i>
+                        <RiUserAddLine
+                          className="mr-1 text-xs" />
                         Enroll
                       </>
                     )}
@@ -733,7 +750,7 @@ const Dashboard: React.FC = () => {
         {filteredCohorts.length === 0 && (
           <div className="text-center py-12">
             <div className="w-16 h-16 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i className="ri-search-line text-2xl text-gray-500"></i>
+              <RiSearchLine className="text-2xl text-gray-500" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-1.5">No cohorts found</h3>
             <p className="text-gray-600 mb-4 text-sm">Try adjusting your search criteria or filters</p>
