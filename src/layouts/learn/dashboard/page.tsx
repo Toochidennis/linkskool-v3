@@ -297,12 +297,12 @@ const Dashboard: React.FC = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         {/* Header */}
-        <div className="bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-lg">
+        <div className="bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-md sticky top-0 z-10">
           <div className="p-6">
-            <div className="flex items-center space-x-4 mb-4">
+            <div className="flex items-center space-x-4 mb-2">
               <button
                 onClick={() => setSelectedCohort(null)}
-                className="p-3 hover:bg-white/60 rounded-xl transition-all duration-300 group"
+                className="p-3 hover:bg-white/60 rounded-xl transition-all duration-300 group cursor-pointer"
               >
                 <RiArrowLeftLine className="text-gray-600 group-hover:text-gray-900 text-lg" />
               </button>
@@ -320,7 +320,7 @@ const Dashboard: React.FC = () => {
         <div className="p-6">
           <div className="max-w-6xl mx-auto">
             {/* Banner and Basic Info */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl overflow-hidden mb-8">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden mb-8">
               <div className="relative h-64 overflow-hidden">
                 <img
                   src={selectedCohort.banner}

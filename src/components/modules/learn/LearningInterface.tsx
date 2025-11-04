@@ -899,15 +899,14 @@ const LearningInterface: React.FC<LearningInterfaceProps> = ({ cohort, onBack })
   return (
     <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 z-50">
       {/* Top Progress Bar */}
-      <div className="bg-white/90 backdrop-blur-xl border-b border-white/20 shadow-lg sticky top-0 z-40">
+      <div className="bg-white/90 backdrop-blur-xl border-b border-white/20 shadow-md sticky top-0 z-40">
         <div className="px-6 py-4">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center space-x-4">
               <button
                 onClick={onBack}
-                className="p-2 hover:bg-white/60 rounded-xl transition-all group"
+                className="p-2 hover:bg-white/60 rounded-xl transition-all group cursor-pointer"
               >
-
                 <RiArrowLeftLine className="text-gray-600 group-hover:text-gray-900 text-lg" />
               </button>
               <div>
@@ -920,26 +919,25 @@ const LearningInterface: React.FC<LearningInterfaceProps> = ({ cohort, onBack })
             <div className="flex items-center space-x-3">
               <button
                 onClick={() => setActiveTab('zoom')}
-                className={`p-3 rounded-xl transition-all ${activeTab === 'zoom' ? 'bg-blue-100 text-blue-600' : 'hover:bg-white/60 text-gray-600'}`}
+                className={`p-3 rounded-xl transition-all cursor-pointer ${activeTab === 'zoom' ? 'bg-blue-100 text-blue-600' : 'hover:bg-white/60 text-gray-600'}`}
               >
                 <RiVideoLine className="text-lg" />
               </button>
               <button
                 onClick={() => setActiveTab('grades')}
-                className={`p-3 rounded-xl transition-all ${activeTab === 'grades' ? 'bg-green-100 text-green-600' : 'hover:bg-white/60 text-gray-600'}`}
+                className={`p-3 rounded-xl transition-all  cursor-pointer ${activeTab === 'grades' ? 'bg-green-100 text-green-600' : 'hover:bg-white/60 text-gray-600'}`}
               >
                 <RiBarChartLine className="text-lg" />
-
               </button>
               <button
                 onClick={() => setActiveTab('discussions')}
-                className={`p-3 rounded-xl transition-all ${activeTab === 'discussions' ? 'bg-purple-100 text-purple-600' : 'hover:bg-white/60 text-gray-600'}`}
+                className={`p-3 rounded-xl transition-all  cursor-pointer ${activeTab === 'discussions' ? 'bg-purple-100 text-purple-600' : 'hover:bg-white/60 text-gray-600'}`}
               >
                 <RiChat3Line className="text-lg" />
               </button>
               <button
                 onClick={() => setShowNotes(!showNotes)}
-                className={`p-3 rounded-xl transition-all ${showNotes ? 'bg-yellow-100 text-yellow-600' : 'hover:bg-white/60 text-gray-600'}`}
+                className={`p-3 rounded-xl transition-all  cursor-pointer ${showNotes ? 'bg-yellow-100 text-yellow-600' : 'hover:bg-white/60 text-gray-600'}`}
               >
                 <RiStickyNoteLine className="text-lg" />
               </button>
@@ -973,7 +971,7 @@ const LearningInterface: React.FC<LearningInterfaceProps> = ({ cohort, onBack })
                     onClick={() => toggleModule(module.id)}
                     className="w-full p-4 text-left hover:bg-gray-50 transition-colors"
                   >
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between cursor-pointer">
                       <div className="flex-1">
                         <h3 className="font-semibold text-gray-900 mb-1">{module.title}</h3>
                         <div className="flex items-center space-x-3 text-sm text-gray-600">
@@ -1008,7 +1006,7 @@ const LearningInterface: React.FC<LearningInterfaceProps> = ({ cohort, onBack })
                           key={lesson.id}
                           onClick={() => selectLesson(lesson)}
                           disabled={lesson.locked}
-                          className={`w-full p-3 text-left flex items-center space-x-3 transition-colors ${lesson.locked ? 'opacity-50 cursor-not-allowed' : selectedLesson?.id === lesson.id ? 'bg-blue-50 border-r-2 border-blue-500' : 'hoverbg-gray-50'}`}
+                          className={`w-full p-3 text-left flex items-center space-x-3 transition-colors ${lesson.locked ? 'opacity-50 cursor-not-allowed' : selectedLesson?.id === lesson.id ? 'bg-blue-50 border-r-2 border-blue-500' : 'hover:bg-gray-50 cursor-pointer'}`}
                         >
                           <div className={`w-6 h-6 flex items-center justify-center ${lesson.completed ? 'text-green-600' : lesson.locked ? 'text-gray-400' : getTypeColor(lesson.type)}`}>
                             {lesson.completed ? <RiCheckDoubleFill /> : lesson.locked ? <RiLockLine /> : getTypeIcon(lesson.type)}
@@ -1041,9 +1039,9 @@ const LearningInterface: React.FC<LearningInterfaceProps> = ({ cohort, onBack })
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all ${activeTab === tab.id ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-600 hover:text-gray-900 hoverbg-white/50'}`}
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all cursor-pointer ${activeTab === tab.id ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-600 hover:text-gray-900 hover:bg-white/50'}`}
                 >
-                  <tab.icon className="text-sm" />
+                  <tab.icon className="text-sm" size={22}/>
                   <span className="text-sm">{tab.label}</span>
                 </button>
               ))}
@@ -1067,10 +1065,10 @@ const LearningInterface: React.FC<LearningInterfaceProps> = ({ cohort, onBack })
                 <h3 className="font-bold text-gray-900">Notes</h3>
                 <button
                   onClick={() => setShowNotes(false)}
-                  className="p-1 hover:bg-gray-200 rounded"
+                  className="p-1 hover:bg-gray-200 rounded cursor-pointer transition-colors"
                 >
-
                   <RiCloseLine className='text-gray-500' />
+                  <span className="sr-only">Close notes</span>
                 </button>
               </div>
 
@@ -1085,7 +1083,6 @@ const LearningInterface: React.FC<LearningInterfaceProps> = ({ cohort, onBack })
                 variant="primary"
                 className="mt-4 bg-gradient-to-r from-blue-600 to-blue-700"
               >
-
                 <RiSaveLine className='mr-2' />
                 Save Notes
               </Button>
@@ -1105,7 +1102,7 @@ const LearningInterface: React.FC<LearningInterfaceProps> = ({ cohort, onBack })
           variant="primary"
           className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 shadow-2xl px-6 py-4 text-lg font-semibold"
         >
-          <RiPlayCircleLine className="mr-2" />
+          <RiPlayCircleLine className="mr-2" size={22} />
           Continue Learning
         </Button>
       </div>

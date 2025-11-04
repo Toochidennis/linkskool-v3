@@ -102,10 +102,10 @@ export default function EnrollmentFlow({ cohort, currentStep, onStepChange, onCo
 
   const getBrandIcon = (brand: string) => {
     switch (brand.toLowerCase()) {
-      case 'visa': return <RiVisaLine />;
-      case 'mastercard': return <RiMastercardLine />;
-      case 'amex': return <RiBankCardLine />;
-      default: return <RiBankCardLine />;
+      case 'visa': return RiVisaLine;
+      case 'mastercard': return RiMastercardLine;
+      case 'amex': return RiBankCardLine;
+      default: return RiBankCardLine;
     }
   };
 
@@ -208,63 +208,66 @@ export default function EnrollmentFlow({ cohort, currentStep, onStepChange, onCo
                 <h5 className="font-bold text-gray-900">Payment Method</h5>
                 <button
                   onClick={() => setShowAddCard(true)}
-                  className="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center"
+                  className="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center cursor-pointer"
                 >
                   <RiAddLine className="mr-1" />
                   Add New Card
                 </button>
               </div>
 
-              {mockCards.map((card) => (
-                <div
-                  key={card.id}
-                  onClick={() => setSelectedCard(card.id)}
-                  className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${selectedCard === card.id
-                    ? 'border-blue-500 bg-blue-50'
-                    : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-gradient-to-r from-gray-700 to-gray-800 rounded-lg flex items-center justify-center">
-                        <i className={`${getBrandIcon(card.brand)} text-white text-lg`}></i>
+              {mockCards.map((card) => {
+                const BrandIcon = getBrandIcon(card.brand);
+                return (
+                  <div
+                    key={card.id}
+                    onClick={() => setSelectedCard(card.id)}
+                    className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${selectedCard === card.id
+                      ? 'border-blue-500 bg-blue-50'
+                      : 'border-gray-200 hover:border-gray-300'
+                      }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 bg-gradient-to-r from-gray-700 to-gray-800 rounded-lg flex items-center justify-center">
+                          <BrandIcon className="text-white text-2xl" />
+                        </div>
+                        <div>
+                          <div className="font-semibold text-gray-900">
+                            •••• •••• •••• {card.last4}
+                          </div>
+                          <div className="text-sm text-gray-600">
+                            Expires {card.expiryMonth.toString().padStart(2, '0')}/{card.expiryYear}
+                          </div>
+                        </div>
+                        {card.isDefault && (
+                          <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">
+                            Default
+                          </span>
+                        )}
                       </div>
-                      <div>
-                        <div className="font-semibold text-gray-900">
-                          •••• •••• •••• {card.last4}
-                        </div>
-                        <div className="text-sm text-gray-600">
-                          Expires {card.expiryMonth.toString().padStart(2, '0')}/{card.expiryYear}
-                        </div>
+                      <div className={`w-5 h-5 rounded-full border-2 ${selectedCard === card.id
+                        ? 'border-blue-500 bg-blue-500'
+                        : 'border-gray-300'
+                        }`}>
+                        {selectedCard === card.id && (
+                          <div className="w-full h-full rounded-full bg-blue-500 flex items-center justify-center">
+                            <RiCheckLine className="text-white text-xs" />
+                          </div>
+                        )}
                       </div>
-                      {card.isDefault && (
-                        <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">
-                          Default
-                        </span>
-                      )}
-                    </div>
-                    <div className={`w-5 h-5 rounded-full border-2 ${selectedCard === card.id
-                      ? 'border-blue-500 bg-blue-500'
-                      : 'border-gray-300'
-                      }`}>
-                      {selectedCard === card.id && (
-                        <div className="w-full h-full rounded-full bg-blue-500 flex items-center justify-center">
-                          <RiCheckLine className="text-white text-xs" />
-                        </div>
-                      )}
                     </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
 
               {/* Add New Card Form */}
               {showAddCard && (
                 <div className="bg-white rounded-xl border-2 border-blue-200 p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <h6 className="font-bold text-gray-900">Add New Card</h6>
+                    <h6 className="font-bold text-gray-900 ">Add New Card</h6>
                     <button
                       onClick={() => setShowAddCard(false)}
-                      className="text-gray-400 hover:text-gray-600"
+                      className="text-gray-400 hover:text-gray-600 cursor-pointer"
                     >
                       <RiCloseLine />
                       <span className="sr-only">Close</span>
@@ -441,10 +444,10 @@ export default function EnrollmentFlow({ cohort, currentStep, onStepChange, onCo
             <div className="flex items-center space-x-4">
               <button
                 onClick={onCancel}
-                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors cursor-pointer"
               >
-
                 <RiCloseLine className="text-white text-xl" />
+                <span className="sr-only">Close</span>
               </button>
               <h2 className="text-2xl font-bold text-white">Course Enrollment</h2>
             </div>
