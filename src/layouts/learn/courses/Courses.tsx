@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Button from '#/components/modules/learn/Button'
 import CourseCard from '#/layouts/learn/courses/components/CourseCard'
+import LearningInterface from '#/components/modules/learn/LearningInterface';
 import {
   RiMore2Fill,
   RiFileTextLine,
@@ -146,6 +147,7 @@ const Courses: React.FC = () => {
   const [showActionDropdown, setShowActionDropdown] = useState<number | null>(null);
   const [bannerFile, setBannerFile] = useState<File | null>(null);
   const [bannerPreview, setBannerPreview] = useState<string>('');
+  const [showLearningInterface, setShowLearningInterface] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -172,6 +174,18 @@ const Courses: React.FC = () => {
   const handleViewCourse = (id: number) => {
     window.REACT_APP_NAVIGATE(`/learn/course/${id}`);
   };
+
+  // Show Learning Interface
+  if (showLearningInterface) {
+    return (
+      <LearningInterface
+        cohort={mockEnrolledCourses[0]}
+        onBack={() => {
+          setShowLearningInterface(false);
+        }}
+      />
+    );
+  }
 
   const handleEditCourse = (id: number) => {
     console.log('Edit course:', id);
@@ -255,7 +269,7 @@ const Courses: React.FC = () => {
       <div className="flex flex-col lg:flex-row gap-3">
         <div className="flex-1">
           <div className="relative">
-            <RiSearchLine className="absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs" size={22}/>
+            <RiSearchLine className="absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs" size={22} />
             <input
               type="text"
               placeholder="Search enrolled courses..."
@@ -336,7 +350,7 @@ const Courses: React.FC = () => {
               </div>
 
               <Button
-                onClick={() => handleViewCourse(course.id)}
+                onClick={() => course.status === 'completed' ? handleViewCourse(course.id) : setShowLearningInterface(true)}
                 variant="primary"
                 size="sm"
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-xs py-3"
